@@ -1,0 +1,57 @@
+#ifndef RTMPH264_H_
+#define RTMPH264_H_
+
+extern "C" {
+#include "faac.h"
+#include "librtmp_send264.h"
+#include "sps_decode.h"
+#include "x264.h"
+#include "x264_config.h"
+#include "v4l2_device.h"
+//#include "libswscale/swscale.h"
+//#include "libavutil/imgutils.h"
+}
+
+
+typedef struct
+{
+	// rtmp object
+	char*				szUrl;
+	RTMP*				rtmp;
+	RTMPPacket			packet;
+	// faac encoder
+	faacEncHandle		hEncoder;
+	unsigned long       nSampleRate;
+	unsigned long       nChannels;
+	unsigned long       nTimeStamp;
+	unsigned long       nTimeDelta;
+	char*				szPcmAudio;
+	unsigned long       nPcmAudioSize;
+	unsigned long       nPcmAudioLen;
+	char*				szAacAudio;
+	unsigned long       nAacAudioSize;
+}RTMPMOD_SPublishObj;
+
+typedef unsigned long long  QWORD, ULONG64, UINT64, ULONGLONG;
+
+class RtmpH264
+{
+
+public:
+	RtmpH264(void);
+
+
+	~RtmpH264()
+	{
+	}
+
+	int CreatePublish(char* url, int outChunkSize, int isOpenPrintLog, int logType);
+	void DeletePublish();
+
+	int InitVideoParams(unsigned long width, unsigned long height, unsigned long fps, unsigned long bitrate,int pixelformat,bool bConstantsBitrate);
+	int SendScreenCapture(BYTE * frame, unsigned long Height, unsigned long timespan, int pixelformat);
+
+	//int WriteVideoParams(unsigned long width, unsigned long height, unsigned long fps, unsigned long bitrate);
+	//int WriteScreenCapture(BYTE * frame, unsigned long Stride, unsigned long Height, unsigned long timespan);
+
+	void FreeEncodeParams(); //

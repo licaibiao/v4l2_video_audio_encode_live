@@ -1,0 +1,13 @@
+#ifndef LIB_RTMP_SEND_H264_H
+#define LIB_RTMP_SEND_H264_H
+extern "C" {
+
+#include "librtmp/rtmp.h"
+#include "librtmp/rtmp_sys.h"
+#include "librtmp/amf.h"
+
+
+/**
+ * Simplest Librtmp Send 264
+ *
+ * 
