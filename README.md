@@ -48,7 +48,7 @@ rtp/jrtplib_send_recv_h264
 
 ----------------------------------------------------------------------
 
-/rtsp/live555_rtsp_live_v4l2
+rtsp/live555_rtsp_live_v4l2
 ---------------------------
 
 [《使用live555 直播来自v4l2的摄像头数据》](https://blog.csdn.net/li_wen01/article/details/59523963)
